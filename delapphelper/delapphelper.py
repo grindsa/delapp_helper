@@ -7,10 +7,10 @@ import configparser
 import requests
 
 
-def config_load(logger=None, mfilter=None, cfg_file='hockeygraphs.cfg'):
+def config_load(logger=None, cfg_file='delapp_helper.cfg'):
     """ small configparser wrappter to load a config file """
     if logger:
-        logger.debug(f'config_load({mfilter}:{cfg_file})')
+        logger.debug(f'config_load({cfg_file})')
     config = configparser.RawConfigParser()
     config.optionxform = str
     config.read(cfg_file)
@@ -55,10 +55,11 @@ class DelAppHelper():
     shift_name = None
     timeout = 20
 
-    def __init__(self, debug=False, deviceid='bada55bada55666'):
+    def __init__(self, debug=False, cfg_file=os.path.dirname(__file__) + '/' + 'delapphelper.cfg', deviceid='bada55bada55666'):
         self.debug = debug
         self.deviceid = deviceid
         self.logger = logger_setup(debug)
+        self.cfg_file = cfg_file
 
     def __enter__(self):
         """ Makes Stirpahelper a Context Manager
@@ -73,7 +74,7 @@ class DelAppHelper():
     def _config_load(self):
         """" load config from file """
         self.logger.debug('_config_load()')
-        config_dic = config_load(cfg_file=os.path.dirname(__file__) + '/' + 'delapphelper.cfg')
+        config_dic = config_load(logger=self.logger, cfg_file=self.cfg_file)
         if 'Urls' in config_dic:
             if 'base_url' in config_dic['Urls']:
                 self.base_url = config_dic['Urls']['base_url']
