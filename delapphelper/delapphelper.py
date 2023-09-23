@@ -150,13 +150,14 @@ class DelAppHelper():
         else:
             prim_key = 'visitor'
 
-        for player_id, player_data in result[prim_key].items():
-            role = int(str(player_id)[0])
-            line_number = int(str(player_id)[1])
-            position = int(str(player_id)[2])
-            if line_number not in lineup_dic:
-                lineup_dic[line_number] = {}
-            lineup_dic[line_number][int(f'{role}{position}')] = f'{player_data["name"]} {player_data["surname"]} ({player_data["jersey"]})'
+        if prim_key in result and result[prim_key]:
+            for player_id, player_data in result[prim_key].items():
+                role = int(str(player_id)[0])
+                line_number = int(str(player_id)[1])
+                position = int(str(player_id)[2])
+                if line_number not in lineup_dic:
+                    lineup_dic[line_number] = {}
+                lineup_dic[line_number][int(f'{role}{position}')] = f'{player_data["name"]} {player_data["surname"]} ({player_data["jersey"]})'
 
         return (lineup_dic, result)
 
