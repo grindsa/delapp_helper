@@ -15,12 +15,12 @@ jobs:
         run: |
           sudo apt-get update && sudo apt-get install -y curl twine python3 python3-mechanicalsoup python3-venv
 
-      #- name: "[ PREPARE ] Get current version"
-      #  uses: oprypin/find-latest-tag@v1
-      #  with:
-      #    repository: ${{ github.repository }}  # The repository to scan.
-      #    releases-only: true  # We know that all relevant tags have a GitHub release for them.
-      #  id: delapp_helper_ver  # The step ID to refer to later.
+      - name: "[ PREPARE ] Get current version"
+        uses: oprypin/find-latest-tag@v1
+        with:
+          repository: ${{ github.repository }}  # The repository to scan.
+          releases-only: true  # We know that all relevant tags have a GitHub release for them.
+        id: delapp_helper_ver  # The step ID to refer to later.
 
       - name: "[ PREPARE ] Checkout code"
         uses: actions/checkout@v3
