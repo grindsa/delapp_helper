@@ -181,7 +181,7 @@ class DelAppHelper():
             line = f'{line}{line_dic[22]}\n'
         return line
 
-    def lineup_format(self, game_id, home_match, _match_id):
+    def lineup_format(self, game_id=None, home_match=True):
         """ get format """
         self.logger.debug('DelAppHelper.linup_format()\n')
         (lineup_dic, raw_json) = self.lineup_dict(game_id, home_match)
