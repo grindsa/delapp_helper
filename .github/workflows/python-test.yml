@@ -26,6 +26,7 @@ jobs:
         run: |
           sudo apt-get install libxml2-dev libxslt-dev python-dev-is-python3
           python -m pip install --upgrade pip
+          pip install pylint pylint-exit
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: "Pylint folder: delapphelper"
         run: |
