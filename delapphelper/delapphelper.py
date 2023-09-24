@@ -5,6 +5,8 @@ from datetime import datetime
 import logging
 import configparser
 import requests
+from requests.packages.urllib3.exceptions import InsecureRequestWarning  # pylint: disable=e0401
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)  # pylint: disable=e1101
 
 
 def config_load(logger=None, cfg_file='delapp_helper.cfg'):
