@@ -30,9 +30,9 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: "Pylint folder: delapphelper"
         run: |
-          pylint --rcfile=".github/pylintrc" delapp_helper/ || pylint-exit $?
+          pylint --rcfile=".github/pylintrc" delapphelper/ || pylint-exit $?
 
       - name: Lint with pycodestyle
         run: |
           pip install pycodestyle
-          pycodestyle --max-line-length=380  delapp_helper/.
+          pycodestyle --max-line-length=380  delapphelper/.
